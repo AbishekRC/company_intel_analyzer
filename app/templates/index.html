@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>External Factors Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script>
+let progressInterval;
+
+function startAnalysis() {
+    fetch("/run", {method: "POST"})
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("status").innerText = "Analysis started...";
+        pollProgress();
+    });
+}
+
+function pollProgress() {
+    progressInterval = setInterval(() => {
+        fetch("/progress")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("status").innerText = data.progress;
+
+            // Stop polling when analysis is complete
+            if (data.progress.includes("Analysis complete")) {
+                clearInterval(progressInterval);
+            }
+        });
+    }, 3000);
+}
+</script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>External Factors Analyzer</h1>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for message in messages %}
+                <div class="flash">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Upload Section -->
+        <div class="section">
+            <h2>Upload Company List</h2>
+            <div class="info-box">
+                <p>Choose your <strong>companies.xlsx</strong> file and click upload and Start to start analysis.</p>
+            </div>
+            <br>
+            <form method="POST" action="/upload" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="file" class="file-input" required>
+                <button type="submit" class="btn">Upload</button></br>
+            </form>
+        </div>
+
+        <!-- Run Analysis Section -->
+        <div class="section">
+            <h2>Run Analysis</h2>
+            <button onclick="startAnalysis()" class="btn">Start</button>
+            <p id="status" class="status-text">Status: Waiting to start...</p>
+        </div>
+
+        <!-- Download Section -->
+        <div class="section">
+            <h2>Download Results</h2>
+            <a href="/download" class="btn download-btn">Download Output file</a>
+        </div>
+    </div>
+</body>
+</html>

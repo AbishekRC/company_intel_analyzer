@@ -1,0 +1,94 @@
+/* Reset and basic styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f6fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    color: #6c5ce7;
+    margin-bottom: 30px;
+}
+
+/* Flash messages */
+.flash-messages {
+    margin-bottom: 20px;
+}
+.flash {
+    background-color: #dfe6e9;
+    border-left: 5px solid #6c5ce7;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 40px;
+}
+
+/* File input */
+.file-input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+/* Buttons */
+.btn {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #5a4bcf;
+}
+
+/* Info Box */
+.info-box {
+    margin-top: 15px;
+    background-color: #f1f2f6;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Status text */
+.status-text {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #2d3436;
+}
+
+/* Download Button */
+.download-btn {
+    display: inline-block;
+    margin-top: 10px;
+}
